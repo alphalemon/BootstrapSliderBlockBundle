@@ -1,0 +1,8 @@
+{
+    "autoload": {
+        "psr-0": { "AlphaLemon\\Block\\BootstrapSliderBlockBundle": ""
+        }
+    },
+    "target-dir" : "AlphaLemon/Block/BootstrapSliderBlockBundle",
+    "minimum-stability": "dev"
+}

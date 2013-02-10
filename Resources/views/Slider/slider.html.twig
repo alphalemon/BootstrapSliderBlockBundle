@@ -1,0 +1,19 @@
+<div id="myCarousel" class="carousel slide">
+    <!-- Carousel items -->
+    <div class="carousel-inner">
+        {% for item in items %}
+            <div class="item">
+                <img src="{{ item.image }}" title="{% if item.title is defined %}{{ item.title }}{% endif %}" alt="{% if item.alt is defined %}{{ item.alt }}{% endif %}" />
+            {% if (item.caption_title is defined and item.caption_title != "") or (item.caption_body is defined and item.caption_body != "") %}
+                <div class="carousel-caption">
+                    {% if item.caption_title is defined %}<h4>{{ item.caption_title }}</h4>{% endif %}
+                    {% if item.caption_body is defined %}<p>{{ item.caption_body }}</p>{% endif %}
+                </div>
+            {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+    <!-- Carousel nav -->
+    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+</div>
