@@ -1,5 +1,5 @@
-BootstrapButtonsGroupBlockBundle
+BootstrapSliderBlockBundle
 --------------------------------
 
-Implements an AlphaLemon CMS app-block capable to manage a Twitter Bootstrap group of button
+Implements an AlphaLemon CMS app-block capable to manage a Twitter Bootstrap slider
 by a nice ajax powered inteface.
