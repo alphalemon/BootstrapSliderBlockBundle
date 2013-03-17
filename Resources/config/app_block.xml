@@ -4,30 +4,21 @@
         xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="bootstrapsliderblock.editor_settings" type="collection">
-            <parameter key="html_editor">true</parameter>
-            <parameter key="internal_js">true</parameter>
+        <parameter key="bootstrapsliderblock.external_javascripts" type="collection">
+            <parameter>@BootstrapSliderBlockBundle/Resources/public/js/slider_editor.js</parameter>
         </parameter>
-
+        
         <parameter key="bootstrap_slider_block.block.class">AlphaLemon\Block\BootstrapSliderBlockBundle\Core\Block\AlBlockManagerBootstrapSliderBlock</parameter>
-        <parameter key="bootstrap_slider_block_rendering.class">AlphaLemon\Block\BootstrapSliderBlockBundle\Core\Listener\ImagesBlockEditorListener</parameter>
-        <parameter key="bootstrap_slider_block_edited.class">AlphaLemon\Block\BootstrapSliderBlockBundle\Core\Listener\ImagesBlockEditedListener</parameter>
+        <parameter key="bootstrapsliderblock.form.class">AlphaLemon\Block\BootstrapSliderBlockBundle\Core\Form\AlSliderType</parameter>
     </parameters>
 
     <services>
         <service id="bootstrap_slider_block.block" class="%bootstrap_slider_block.block.class%">
-            <tag name="alphalemon_cms.blocks_factory.block" description="Twitter Bootstrap Slider" type="BootstrapSliderBlock" group="Twitter Bootstrap" />
+            <tag name="alphalemon_cms.blocks_factory.block" description="Carousel" type="BootstrapSliderBlock" group="bootstrap,Twitter Bootstrap" />
             <argument type="service" id="service_container" />
         </service>
         
-        <service id="bootstrap_slider_block_rendering.class" class="%bootstrap_slider_block_rendering.class%">
-            <tag name="alcms.event_listener" event="actions.block_editor_rendering" method="onBlockEditorRendering" priority="0" />
-        </service>
-        
-        
-        <service id="bootstrap_slider_block_edited.class" class="%bootstrap_slider_block_edited.class%">
-            <tag name="alcms.event_listener" event="actions.block_edited" method="onBlockEdited" priority="0" />
-            <argument type="service" id="templating" />
+        <service id="bootstrapsliderblock.form" class="%bootstrapsliderblock.form.class%">
         </service>
     </services>
 </container>
