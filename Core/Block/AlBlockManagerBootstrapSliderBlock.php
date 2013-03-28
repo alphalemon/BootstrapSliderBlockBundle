@@ -87,22 +87,20 @@ class AlBlockManagerBootstrapSliderBlock  extends AlBlockManagerImages
         );
     }
     
-    protected function replaceHtmlCmsActive()
-    {
-        $buttons = AlBlockManagerJsonBlock::decodeJsonContent($this->alBlock->getContent());
+    public function editorParameters()
+    {        
+        $items = AlBlockManagerJsonBlock::decodeJsonContent($this->alBlock->getContent());
         
         $formClass = $this->container->get('bootstrapsliderblock.form');
-        $buttonForm = $this->container->get('form.factory')->create($formClass);
+        $form = $this->container->get('form.factory')->create($formClass);
         
-        return array('RenderView' => array(
-            'view' => 'BootstrapSliderBlockBundle:Editor:bootstrapsliderblock_editor.html.twig',
-            'options' => array(
-                'items' => $buttons, 
-                'block_manager' => $this,
-                'form' => $buttonForm->createView(), 
-                'parent' => $this->alBlock,
-            ),
-        ));
+        return array(
+            "template" => 'BootstrapSliderBlockBundle:Editor:_editor.html.twig',
+            "title" => "Slider editor",
+            "form" => $form->createView(),
+            'items' => $items,
+            'parent' => $this->alBlock, 
+        );
     }
     
     protected function edit(array $values)

@@ -1,6 +1,6 @@
 $(document).ready(function() {
-    $(document).on("popoverShow", function(event, idBlock, blockType){ 
-        if (blockType != 'BootstrapSliderBlock') {
+    $(document).on("popoverShow", function(event, element){         
+        if (element.attr('data-type') != 'BootstrapSliderBlock') {
             return;
         }
         
@@ -26,6 +26,8 @@ $(document).ready(function() {
                         var image = '/' + $('#al_assets_path').val() + '/' + file.path;
                         $('#al_json_block_src').val(image);
                         $('.al_img_selected').find('img').attr('src', image);
+                        
+                        $('body').showAlert('Image has been selected')
                     }
             }).dialogelfinder('instance');
         });
