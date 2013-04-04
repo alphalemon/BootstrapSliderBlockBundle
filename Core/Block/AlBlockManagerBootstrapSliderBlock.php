@@ -54,7 +54,7 @@ class AlBlockManagerBootstrapSliderBlock  extends AlBlockManagerImages
         return null;
     }
     
-    public function getHtml()
+    protected function renderHtml()
     {
         if (null === $this->alBlock) return "";
         
