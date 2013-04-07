@@ -1,5 +1,22 @@
 {% set form_name = editor.form.getName %}
 {% block images %}
+<style>
+.images_list {
+    min-width: 700px;
+}
+.images_attributes {
+    min-width: 300px;
+}
+.images_contents {
+    min-width: 360px;
+    max-height: 300px;
+    overflow: auto;
+    margin-right: 20px;
+}
+.al_img {
+    visibility:visible;
+}
+</style>
 <div class="images_list">
     <div class="images_contents pull-left">
         {% include "AlphaLemonCmsBundle:ImagesList:_list.html.twig" with { 'images': editor.items } %}
@@ -10,3 +27,11 @@
     <div class="clearfix"></div>
 </div>    
 {% endblock %}
+
+Editing the button - We are editing the button
+Button edited - The button has been edited.
+The menu to add new blocks - A new block is added from this menu.
+Split dropdown button edited - The split dropdown button has been edited
+Pages manager interface - The pages manager interface let you add, edit or manage the website pages ant their attributes. Pages can be added to a sitemap.
+Languages manager interface - The languages manager interface let you add, edit or manage the website languages.
+Themes manager interface
