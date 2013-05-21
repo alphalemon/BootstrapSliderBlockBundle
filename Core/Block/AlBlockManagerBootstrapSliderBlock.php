@@ -105,11 +105,13 @@ class AlBlockManagerBootstrapSliderBlock  extends AlBlockManagerImages
     
     protected function edit(array $values)
     {
-        $formClass = $this->container->get('bootstrapsliderblock.form');
-        $buttonForm = $this->container->get('form.factory')->create($formClass);
-        
-        $formName = $buttonForm->getName() . "_";
-        $values["Content"] = str_replace($formName, "", $values["Content"]);
+        if (array_key_exists('Content', $values)) {
+            $formClass = $this->container->get('bootstrapsliderblock.form');
+            $buttonForm = $this->container->get('form.factory')->create($formClass);
+
+            $formName = $buttonForm->getName() . "_";
+            $values["Content"] = str_replace($formName, "", $values["Content"]);
+        }
         
         return parent::edit($values);
     }
