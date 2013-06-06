@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of the BusinessDropCapBundle and it is distributed
+ * This file is part of the BootstrapSliderBlockBundle and it is distributed
  * under the MIT LICENSE. To use this application you must leave intact this copyright 
  * notice.
  *
@@ -20,8 +20,16 @@ namespace AlphaLemon\Block\BootstrapSliderBlockBundle\Core\Form;
 use AlphaLemon\AlphaLemonCmsBundle\Core\Form\JsonBlock\JsonBlockType;
 use Symfony\Component\Form\FormBuilderInterface;
 
+/**
+ * Defines the form to edit the Bootstrap slider's attributes
+ *
+ * @author AlphaLemon <webmaster@alphalemon.com>
+ */
 class AlSliderType extends JsonBlockType
 {
+    /**
+     * {@inheritdoc}
+     */    
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         parent::buildForm($builder, $options);

@@ -1,18 +1,35 @@
 <?php
-/**
- * An AlphaLemonCms Block
+/*
+ * This file is part of the BootstrapSliderBlockBundle and it is distributed
+ * under the MIT LICENSE. To use this application you must leave intact this copyright 
+ * notice.
+ *
+ * Copyright (c) AlphaLemon <webmaster@alphalemon.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * For extra documentation and help please visit http://www.alphalemon.com
+ * 
+ * @license    MIT LICENSE
+ * 
  */
 
 namespace AlphaLemon\Block\BootstrapSliderBlockBundle\Core\Block;
 
 use AlphaLemon\AlphaLemonCmsBundle\Core\Content\Block\ImagesBlock\AlBlockManagerImages;
-use AlphaLemon\AlphaLemonCmsBundle\Core\Content\Block\JsonBlock\AlBlockManagerJsonBlock;
+use AlphaLemon\AlphaLemonCmsBundle\Core\Content\Block\JsonBlock\AlBlockManagerJsonBase;
 
 /**
- * Description of AlBlockManagerBootstrapSliderBlock
+ * Defines the Block Manager to handle a Bootstrap Carousel slider
+ *
+ * @author AlphaLemon <webmaster@alphalemon.com>
  */
 class AlBlockManagerBootstrapSliderBlock  extends AlBlockManagerImages
 {
+    /**
+     * {@inheritdoc}
+     */
     public function getDefaultValue()
     {
         $defaultValue =
@@ -49,47 +66,12 @@ class AlBlockManagerBootstrapSliderBlock  extends AlBlockManagerImages
         );
     }
     
-    public function isColumnVisible()
-    {
-        return null;
-    }
-    
-    protected function renderHtml()
-    {
-        if (null === $this->alBlock) return "";
-        
-        $images = AlBlockManagerJsonBlock::decodeJsonContent($this->alBlock);
-        
-        return array(
-            "RenderView" => array(
-                "view" => "BootstrapSliderBlockBundle:Slider:slider.html.twig",
-                "options" => array(
-                    "items" => $images,
-                )
-            )
-        );
-    }
-    
-    public function getContentForEditor()
-    {
-        if (null === $this->alBlock) {
-            return "";
-        }
-        
-        $images = AlBlockManagerJsonBlock::decodeJsonContent($this->alBlock);
-        
-        return array_map(function($el)
-            { 
-                $image = str_replace("\\", "/", $el['image']);
-                
-                return array_merge($el, array('id' => md5($image), 'image' => $image));             
-            }, $images
-        );
-    }
-    
+    /**
+     * {@inheritdoc}
+     */
     public function editorParameters()
     {        
-        $items = AlBlockManagerJsonBlock::decodeJsonContent($this->alBlock->getContent());
+        $items = AlBlockManagerJsonBase::decodeJsonContent($this->alBlock->getContent());
         
         $formClass = $this->container->get('bootstrapsliderblock.form');
         $form = $this->container->get('form.factory')->create($formClass);
@@ -103,16 +85,54 @@ class AlBlockManagerBootstrapSliderBlock  extends AlBlockManagerImages
         );
     }
     
+    /**
+     * {@inheritdoc}
+     */
+    protected function renderHtml()
+    {
+        if (null === $this->alBlock) {
+            return "";
+        }
+        
+        $images = AlBlockManagerJsonBase::decodeJsonContent($this->alBlock);
+        
+        return array(
+            "RenderView" => array(
+                "view" => "BootstrapSliderBlockBundle:Slider:slider.html.twig",
+                "options" => array(
+                    "items" => $images,
+                )
+            )
+        );
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
     protected function edit(array $values)
+    {
+        $values = $this->removeFormNameReference($values);
+        
+        return parent::edit($values);
+    }
+    
+    /**
+     * Removes the form name from the images' attributes given back from the attributes 
+     * form
+     *
+     * @param array $values
+     * @return array
+     */
+    protected function removeFormNameReference(array $values)
     {
         if (array_key_exists('Content', $values)) {
             $formClass = $this->container->get('bootstrapsliderblock.form');
             $buttonForm = $this->container->get('form.factory')->create($formClass);
 
-            $formName = $buttonForm->getName() . "_";
+            $formName = $buttonForm->getName() . "_";  
             $values["Content"] = str_replace($formName, "", $values["Content"]);
         }
         
-        return parent::edit($values);
+        return $values;
     }
 }
