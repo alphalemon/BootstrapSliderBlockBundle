@@ -8,6 +8,10 @@
             <parameter>@BootstrapSliderBlockBundle/Resources/public/js/slider_editor.js</parameter>
         </parameter>
         
+        <parameter key="bootstrapsliderblock.internal_javascripts" type="collection">
+            <parameter>$(".carousel").carousel("pause");</parameter>
+        </parameter>
+        
         <parameter key="bootstrap_slider_block.block.class">AlphaLemon\Block\BootstrapSliderBlockBundle\Core\Block\AlBlockManagerBootstrapSliderBlock</parameter>
         <parameter key="bootstrapsliderblock.form.class">AlphaLemon\Block\BootstrapSliderBlockBundle\Core\Form\AlSliderType</parameter>
     </parameters>

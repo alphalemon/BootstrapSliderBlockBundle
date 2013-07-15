@@ -22,7 +22,7 @@
         {% include "AlphaLemonCmsBundle:ImagesList:_list.html.twig" with { 'images': editor.items } %}
     </div>
     <div class="images_attributes pull-right">
-        {% include "BootstrapSliderBlockBundle:Editor:item.html.twig" %}
+        {% include "BootstrapSliderBlockBundle:Editor:item.html.twig" with {'configuration': editor.configuration } %}
     </div>    
     <div class="clearfix"></div>
 </div>    
