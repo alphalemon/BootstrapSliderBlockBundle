@@ -80,6 +80,7 @@ class AlBlockManagerBootstrapSliderBlock  extends AlBlockManagerImages
             "template" => 'BootstrapSliderBlockBundle:Editor:_editor.html.twig',
             "title" => "Slider editor",
             "form" => $form->createView(),
+            'form_name' => $form->getName(),
             'items' => $items,
             'parent' => $this->alBlock, 
         );

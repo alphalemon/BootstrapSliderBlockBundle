@@ -1,4 +1,3 @@
-{% set form_name = editor.form.getName %}
 {% block images %}
 <style>
 .images_list {
@@ -19,7 +18,7 @@
 </style>
 <div class="images_list">
     <div class="images_contents pull-left">
-        {% include "AlphaLemonCmsBundle:ImagesList:_list.html.twig" with { 'images': editor.items } %}
+        {% include "AlphaLemonCmsBundle:ImagesList:_list.html.twig" with { 'images': editor.items, 'form_name' : editor.form_name } %}
     </div>
     <div class="images_attributes pull-right">
         {% include "BootstrapSliderBlockBundle:Editor:item.html.twig" %}
