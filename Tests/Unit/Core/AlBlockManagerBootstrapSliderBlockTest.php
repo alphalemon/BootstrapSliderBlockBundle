@@ -65,7 +65,6 @@ class AlBlockManagerBootstrapSliderBlockTest extends AlBlockManagerContainerBase
                 "caption_body" : "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus."
             }
         }',
-        'InternalJavascript' => '$(".carousel").carousel("pause");',
         );
             
         $this->initContainer(); 

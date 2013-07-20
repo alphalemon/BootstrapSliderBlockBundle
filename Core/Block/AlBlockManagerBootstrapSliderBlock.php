@@ -62,7 +62,6 @@ class AlBlockManagerBootstrapSliderBlock  extends AlBlockManagerImages
 
         return array(
             'Content' => $defaultValue,
-            'InternalJavascript' => '$(".carousel").carousel("pause");'
         );
     }
     
@@ -82,7 +81,7 @@ class AlBlockManagerBootstrapSliderBlock  extends AlBlockManagerImages
             "form" => $form->createView(),
             'form_name' => $form->getName(),
             'items' => $items,
-            'parent' => $this->alBlock, 
+            'configuration' => $this->container->get('alpha_lemon_cms.configuration'), 
         );
     }
     
